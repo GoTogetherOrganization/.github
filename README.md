@@ -67,7 +67,7 @@ This is a **Microservices-based event-driven Food Delivery Application** that al
 
 ## High-Level Architecture
 
-![High-Level Architecture](https://github.com/FoodDeliveryApp-ISA/Restaurant/raw/main/diagrams/High%20Level%20architecture.png)
+![High-Level Architecture](https://github.com/FoodDeliveryApp-ISA/FoodDeliveryApp-ISA/blob/main/diagrams/High%20level%20architecture.png)
 Microservices, event-driven, 3-tier architecture.
 *(Refer to the provided image for detailed visualization)*
 
@@ -88,7 +88,7 @@ Microservices, event-driven, 3-tier architecture.
 
 ## Database Design
 
-![ER Diagram](https://github.com/FoodDeliveryApp-ISA/Restaurant/raw/main/diagrams/er%20diagram.png)
+![ER Diagram](https://github.com/FoodDeliveryApp-ISA/FoodDeliveryApp-ISA/blob/main/diagrams/er%20diagram.png)
 The application is built using **3 PostgreSQL databases**, each serving a separate microservice:
 1. **Customer Service Database**: Manages user accounts, orders.
 2. **Restaurant Service Database**: Manages restaurants, menus, notifications, and orders.
