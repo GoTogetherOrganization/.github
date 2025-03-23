@@ -21,53 +21,38 @@ This is a **Microservices-based event-driven Food Delivery Application** that al
 
 ## Tech Stack
 
-<div align="left" style="display: flex; flex-wrap: wrap; gap: 10px;">
+<p align="left">
   <a href="https://reactjs.org" target="_blank" rel="noreferrer">
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="React" width="40" height="40"/>
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/>
   </a>
   <a href="https://ant.design" target="_blank" rel="noreferrer">
-    <img src="https://avatars.githubusercontent.com/u/12101536?s=200&v=4" alt="Ant Design" width="40" height="40"/>
+    <img src="https://avatars.githubusercontent.com/u/12101536?s=200&v=4" alt="ant-design" width="40" height="40"/>
   </a>
   <a href="https://www.postman.com/" target="_blank" rel="noreferrer">
-    <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="Postman" width="40" height="40"/>
+    <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/>
   </a>
   <a href="https://www.java.com/" target="_blank" rel="noreferrer">
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="Java" width="40" height="40"/>
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/>
   </a>
   <a href="https://spring.io/projects/spring-boot" target="_blank" rel="noreferrer">
-    <img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="Spring Boot" width="40" height="40"/>
-  </a>
-  <a href="https://jwt.io/" target="_blank" rel="noreferrer">
-    <img src="https://jwt.io/img/pic_logo.svg" alt="JWT" width="40" height="40"/>
+    <img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="spring-boot" width="40" height="40"/>
   </a>
   <a href="https://grpc.io/" target="_blank" rel="noreferrer">
-    <img src="https://grpc.io/img/logos/grpc-icon-color.png" alt="gRPC" width="40" height="40"/>
-  </a>
-  <a href="https://developers.google.com/protocol-buffers" target="_blank" rel="noreferrer">
-    <img src="https://protobuf.dev/img/protobuf-logo.svg" alt="Protobuf" width="40" height="40"/>
+    <img src="https://grpc.io/img/logos/grpc-icon-color.png" alt="grpc" width="40" height="40"/>
   </a>
   <a href="https://kafka.apache.org/" target="_blank" rel="noreferrer">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Apache_kafka-icon.svg" alt="Kafka" width="40" height="40"/>
+    <img src="https://kafka.apache.org/logos/kafka-logo-square.png" alt="kafka" width="40" height="40"/>
   </a>
   <a href="https://redis.io/" target="_blank" rel="noreferrer">
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redis/redis-original.svg" alt="Redis" width="40" height="40"/>
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redis/redis-original.svg" alt="redis" width="40" height="40"/>
   </a>
   <a href="https://www.postgresql.org/" target="_blank" rel="noreferrer">
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" width="40" height="40"/>
-  </a>
-  <a href="https://www.cloudflare.com/r2/" target="_blank" rel="noreferrer">
-    <img src="https://avatars.githubusercontent.com/u/314135?s=200&v=4" alt="Cloudflare R2" width="40" height="40"/>
-  </a>
-  <a href="https://www.zookeeper.apache.org/" target="_blank" rel="noreferrer">
-    <img src="https://zookeeper.apache.org/images/zookeeper_small.gif" alt="Zookeeper" width="40" height="40"/>
-  </a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" target="_blank" rel="noreferrer">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Websocket_icon.png" alt="WebSocket" width="40" height="40"/>
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" alt="postgresql" width="40" height="40"/>
   </a>
   <a href="https://www.docker.com/" target="_blank" rel="noreferrer">
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" alt="Docker" width="40" height="40"/>
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" alt="docker" width="40" height="40"/>
   </a>
-</div>
+</p>
 
 ### **Frontend**:
 
