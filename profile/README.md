@@ -182,6 +182,6 @@ The application is containerized using **Docker** and managed via **Docker Compo
 
 ## Contributors
 
-- **Restaurant Side:** Harshana ([UchihaIthachi](https://github.com/UchihaIthachi))
 - **Customer Side:** Kavindu ([senaMora](https://github.com/senaMora))
+- **Restaurant Side:** Harshana ([UchihaIthachi](https://github.com/UchihaIthachi))
 - **Rider Side:** Sahan ([sahan-vishwajith](https://github.com/sahan-vishwajith))
