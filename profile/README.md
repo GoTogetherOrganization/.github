@@ -1,187 +1,218 @@
-# Food Delivery Application
+# GoTogether - Intelligent Travel Companion for Sri Lanka
 
 ## Table of Contents
 
 - [Overview](#overview)
-- [Tech Stack](#tech-stack)
-- [Features](#features)
-  - [Customer Features](#customer-features)
-  - [Restaurant Features](#restaurant-features)
-  - [Rider Features](#rider-features)
+  - [Problem Statement](#problem-statement)
+  - [Target Users](#target-users)
+- [Key Features](#key-features)
 - [High-Level Architecture](#high-level-architecture)
+  - [Key Components](#key-components)
+- [Web Frontend Design](#web-frontend-design)
+  - [Key Features](#key-features-1)
+- [Mobile Frontend Design](#mobile-frontend-design)
+  - [Highlights](#highlights)
+- [Backend Design](#backend-design)
+  - [Microservices](#microservices)
+  - [Storage](#storage)
 - [Database Design](#database-design)
+- [Security and Privacy Design](#security-and-privacy-design)
+  - [Authentication and Authorization](#authentication-and-authorization)
+  - [Secure Communication Channels](#secure-communication-channels)
+  - [Data Privacy and Protection](#data-privacy-and-protection)
+- [Technology Stack](#technology-stack)
+  - [Frontend Technologies](#frontend-technologies)
+  - [Backend Technologies](#backend-technologies)
+  - [Database](#database)
+  - [Cloud Infrastructure](#cloud-infrastructure)
+  - [DevOps and CI/CD Tools](#devops-and-cicd-tools)
 - [Deployment](#deployment)
-- [Contributors](#contributors)
 
 ## Overview
 
-This project was completed during an internship at ISA (Information Systems Associates (Pvt) Ltd, previously known as Accelero), as a preparatory exercise before starting our industry project, with the aim of familiarizing ourselves with their tech stack. It was developed by a team of 3 members.
+GoTogether is a comprehensive travel management solution designed specifically for Sri Lanka, comprising both mobile and web applications. The platform addresses critical gaps in travel planning and transportation information that affect both international tourists and local travelers. By providing personalized route planning, real-time travel support, and cultural insights, GoTogether serves as an intelligent travel companion that transforms the way people explore Sri Lanka.
 
-This is a **Microservices-based event-driven Food Delivery Application** that allows customers to order food from restaurants, riders to deliver orders, and restaurants to manage their menus and orders. The project follows a **three-tier architecture** and utilizes **modern technologies** to ensure scalability, security, and performance.
+### Problem Statement
 
-## Tech Stack
+Tourists visiting Sri Lanka frequently encounter significant challenges including language barriers, inefficient route planning, and lack of accessible transportation information. These difficulties result in wasted time, increased travel costs, and suboptimal travel experiences. Similarly, Sri Lankan travelers face comparable obstacles due to the absence of optimized trip planning tools tailored to local conditions. The current travel landscape is characterized by fragmented information sources, manual planning processes, and limited access to real-time transportation data, creating a clear need for an integrated, intelligent travel solution.
 
-<p align="left">
-  <a href="https://reactjs.org" target="_blank" rel="noreferrer">
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/>
-  </a>
-  <a href="https://ant.design" target="_blank" rel="noreferrer">
-    <img src="https://avatars.githubusercontent.com/u/12101536?s=200&v=4" alt="ant-design" width="40" height="40"/>
-  </a>
-  <a href="https://www.postman.com/" target="_blank" rel="noreferrer">
-    <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/>
-  </a>
-  <a href="https://www.java.com/" target="_blank" rel="noreferrer">
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/>
-  </a>
-  <a href="https://spring.io/projects/spring-boot" target="_blank" rel="noreferrer">
-    <img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="spring-boot" width="40" height="40"/>
-  </a>
-  <a href="https://grpc.io/" target="_blank" rel="noreferrer">
-    <img src="https://grpc.io/img/logos/grpc-icon-color.png" alt="grpc" width="40" height="40"/>
-  </a>
-  <a href="https://kafka.apache.org/" target="_blank" rel="noreferrer">
-    <img src="https://kafka.apache.org/logos/kafka-logo-square.png" alt="kafka" width="40" height="40"/>
-  </a>
-  <a href="https://redis.io/" target="_blank" rel="noreferrer">
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redis/redis-original.svg" alt="redis" width="40" height="40"/>
-  </a>
-  <a href="https://www.postgresql.org/" target="_blank" rel="noreferrer">
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" alt="postgresql" width="40" height="40"/>
-  </a>
-  <a href="https://www.docker.com/" target="_blank" rel="noreferrer">
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" alt="docker" width="40" height="40"/>
-  </a>
-</p>
+### Target Users
 
-### **Frontend**:
+GoTogether is designed to serve two primary user segments:
+- **Foreign Travelers:** International tourists visiting Sri Lanka who require comprehensive travel guidance, cultural context, and language support to navigate the country effectively and safely.
+- **Local Travelers:** Sri Lankan residents seeking efficient trip planning, optimized routes, and access to comprehensive transportation information for domestic travel within the country.
 
-- **React** with **Ant Design** for UI components.
-- Communication with backend via **RESTful APIs (HTTP)** and **WebSockets** for real-time notifications.
-- **Postman** for API testing and documentation.
+## Key Features
 
-### **Backend**:
-
-- **Java 17** with **Spring Boot**.
-- **Spring Security** with **JWT** for authentication & authorization.
-- **gRPC** with **Protocol Buffers (protobuf)** for synchronous inter-service communication.
-- **Apache Kafka** for asynchronous messaging and event-driven architecture.
-- **Redis** for caching frequently accessed data.
-
-### **Database & Storage**:
-
-- **PostgreSQL** (3 databases for different services).
-- **Cloudflare R2 (S3-compatible storage)** for storing images (restaurant logos, food images, etc.).
-- **Docker & Docker Compose** for containerized deployment.
-
-### **Other Key Technologies**:
-
-- **Zookeeper** for managing distributed services.
-- **WebSockets** for real-time notifications (e.g., order status updates, rider location tracking).
-- **OpenStreet API** for location and mapping.
-
----
-
-## Features
-
-### **Customer Features**
-
-- Create (with email verification) and edit customer profiles.
-- Customer login with credentials (JWT token).
-- Search for restaurants or food items.
-- Place food orders.
-- View payment amount and pay the rider upon delivery.
-- Track orders with rider live location.
-- Order management with real-time order status.
-
-### **Restaurant Features**
-
-- Create (with email verification) and edit restaurant profiles.
-- Restaurant login with credentials (JWT token).
-- Manage menus by adding, editing, or deleting food items.
-- Accept customer orders.
-- Request riders for deliveries.
-- Password recovery functionality.
-- Real-time order notifications using WebSocket.
-- Caching for restaurants, menus, and menu items with Redis.
-- Forget password functionality.
-- Track order state in real-time.
-
-### **Rider Features**
-
-- Create (with email verification) and edit rider accounts.
-- Rider login with credentials (JWT token).
-- Update location and availability for deliveries.
-- Accept delivery requests from restaurants.
-- Collect food from restaurants.
-- Deliver to customers and update delivery status.
-- Real-Time Live Location Updates Interactive Map View.
-- Path finding Using A\* Algorithm.
-- Concurrency Handling in Request Acceptance.
-
----
+The application delivers six core functionalities designed to address specific travel pain points:
+- **Personalized Tour Planning:** Enables users to create customized itineraries by selecting starting points and destinations, with intelligent route optimization and personalized recommendations.
+- **Transport Details:** Provides comprehensive information about available transportation options between destinations, including schedules, fares, and real-time availability.
+- **Travel Guidance:** Offers curated recommendations for cultural sites, entertainment venues, and hidden attractions, enhancing the discovery aspect of travel.
+- **Trip Review & Travel Feed:** Creates a social platform where users can share trip plans, engage through comments and reactions, and follow other travelers for inspiration and insights.
+- **Emergency Support:** Ensures traveler safety by providing quick access to essential services including hospitals and police stations during emergencies.
+- **Food/Stay Suggestions:** Delivers location-based recommendations for accommodations and restaurants tailored to specific travel destinations and user preferences.
 
 ## High-Level Architecture
 
-![High-Level Architecture](https://github.com/FoodDeliveryApp-ISA/FoodDeliveryApp-ISA/blob/main/diagrams/High%20level%20architecture.png)
-Microservices, event-driven, 3-tier architecture.
-_(Refer to the provided image for detailed visualization)_
+The system adopts a distributed microservices architecture, ensuring scalability, modularity, and cloud-native capabilities. It cleanly separates concerns across frontend, backend, AI services, and third-party integrations, using a blend of managed platforms and infrastructure-as-a-service components.
 
-### **Architecture Breakdown**
+![High-Level Architecture](../diagrams/High%20level%20architecture.png)
 
-- **Frontend (React)**
-- **Backend (Spring Boot, Microservices)**
-- **Database Layer (PostgreSQL)**
-- **Message Queue (Apache Kafka)**
-- **Cache Layer (Redis)**
-- **File Storage (Cloudflare S3)**
-- **WebSockets for Notifications**
-- **API Communication**:
-  - REST API for frontend communication.
-  - gRPC for backend service communication.
-  - Kafka for event-driven architecture.
+### Key Components
 
----
+-   **Frontend**
+    -   Web App: Built with Next.js, deployed on Vercel.
+    -   Mobile App: Developed using React Native.
+-   **Backend**
+    -   Composed of Dockerized microservices using Spring Boot and Go.
+-   **API Gateway**
+    -   Kong Gateway handles all inbound traffic (routing, rate limiting, service discovery, delegated authentication).
+-   **Authentication**
+    -   Keycloak manages user login, registration, sessions, and OAuth2/OpenID Connect flows.
+-   **Database**
+    -   Supabase PostgreSQL stores persistent data.
+-   **Image CDN**
+    -   Cloudflare Images stores and serves user-uploaded media.
+-   **DevOps & CI/CD**
+    -   GitHub Actions automates the build, test, and containerization pipeline.
+-   **Communication**
+    -   Internal services communicate via REST and gRPC.
+-   **Reverse Proxy**
+    -   NGINX serves as an optional HTTPS reverse proxy.
+
+## Web Frontend Design
+
+The web frontend is developed using Next.js, offering a modern, fast, and SEO-friendly user experience. It leverages a hybrid rendering strategy (SSR + CSR) and built-in features for performance and accessibility.
+
+### Key Features
+
+-   **Responsive Design:** Ensures seamless interaction across mobile, tablet, and desktop devices.
+-   **Dark Mode Support:** Built-in toggle for light and dark themes.
+-   **SSR + CSR Performance:** Uses Server-Side Rendering (SSR) for fast initial loads and Client-Side Rendering (CSR) for dynamic interactions.
+-   **Skeleton Screens:** Displays placeholders during content fetch.
+-   **Image Optimization:** Utilizes Next.js Image component for automatic image resizing, lazy loading, and CDN delivery.
+
+## Mobile Frontend Design
+
+The mobile experience is built using React Native, enabling cross-platform development and consistent logic sharing with the web app.
+
+### Highlights
+
+-   **Platform-Native Experience:** Delivers smooth interactions and UI responsiveness aligned with both iOS and Android guidelines.
+-   **Shared Logic with Web:** Core logic, models, and API services are shared with the Next.js frontend.
+-   **Responsive Theming:** Adaptive UI scaling, and intuitive mobile gestures.
+
+## Backend Design
+
+### Microservices
+Deployed via containers in Docker Compose:
+-   **api-service (Go):** Handles place search, mapping, geocoding. Talks to Google Maps API, trip planner, and Gemini calls.
+-   **planning-service (Spring Boot):** Manages event/trip creation, editing, participation. Validates user preferences and generates travel plans.
+-   **social-media-service (Spring Boot):** Handles post creation, comments, likes, and user feed rendering.
+-   **auth-service (Keycloak):** Handles authentication, registration, and session/token management.
+-   **user-service (Spring Boot):** Manages user profiles and follow/unfollow system.
+
+### Storage
+
+-   **Supabase PostgreSQL:** Used for structured storage (users, trips, social metadata, relationships).
+-   **Cloudflare Images:** Optimized image CDN for storing and delivering profile pictures, post media, etc.
 
 ## Database Design
 
-![ER Diagram](https://github.com/FoodDeliveryApp-ISA/FoodDeliveryApp-ISA/blob/main/diagrams/er%20diagram.png)
-The application is built using **3 PostgreSQL databases**, each serving a separate microservice:
+The application utilizes **Supabase PostgreSQL** for persistent data storage, managing users, trips, social metadata, and preferences.
 
-1. **Customer Service Database**: Manages user accounts, orders.
-2. **Restaurant Service Database**: Manages restaurants, menus, notifications, and orders.
-3. **Delivery Service Database**: Manages rider details.
+![ER Diagram](../diagrams/er%20diagram.png)
 
-Each database follows **normalized relational database design**, ensuring data consistency and integrity.
+## Security and Privacy Design
 
-**ER Diagram and High-Level Architecture**
-The repository contains visual representations of the system architecture and database design.
+### Authentication and Authorization
 
-- **ER Diagram**: Depicts the database structure with three PostgreSQL databases.
-- **High-Level Architecture**: Shows the microservices architecture and interactions.
+-   **OAuth2.0 + OpenID Connect (OIDC):** Implemented via Keycloak for secure login and token-based session management.
+-   **JWT Access Tokens:** APIs are protected using signed JSON Web Tokens.
 
-Find these diagrams in the repository under the `diagrams` directory:
-[Repository Link](https://github.com/FoodDeliveryApp-ISA/Restaurant)
+### Secure Communication Channels
 
----
+-   **HTTPS Everywhere:** All public endpoints are secured using TLS.
+-   **WSS (WebSocket Secure):** Real-time communication uses encrypted WebSocket channels.
+-   **Reverse Proxy Security:** All traffic is routed through an NGINX-based proxy.
+
+### Data Privacy and Protection
+
+-   **Email Verification:** Users must confirm their email address during registration.
+
+## Technology Stack
+
+<p align="left">
+  <a href="https://nextjs.org/" target="_blank" rel="noreferrer">
+    <img src="../diagrams/nextjs-icon.png" alt="Next.js" width="40" height="40"/>
+  </a>
+  <a href="https://reactnative.dev/" target="_blank" rel="noreferrer">
+    <img src="../diagrams/React.webp" alt="React Native" width="40" height="40"/>
+  </a>
+  <a href="https://go.dev/" target="_blank" rel="noreferrer">
+    <img src="../diagrams/Go_Logo_Blue.svg.png" alt="Go" width="40" height="40"/>
+  </a>
+  <a href="https://spring.io/projects/spring-boot" target="_blank" rel="noreferrer">
+    <img src="../diagrams/springboot.png" alt="Spring Boot" width="40" height="40"/>
+  </a>
+  <a href="https://konghq.com/kong" target="_blank" rel="noreferrer">
+    <img src="../diagrams/kong-icon-icon-lg.png" alt="Kong" width="40" height="40"/>
+  </a>
+  <a href="https://www.postgresql.org/" target="_blank" rel="noreferrer">
+    <img src="../diagrams/Postgresql_elephant.svg.png" alt="PostgreSQL" width="40" height="40"/>
+  </a>
+  <a href="https://www.cloudflare.com/" target="_blank" rel="noreferrer">
+    <img src="../diagrams/Cloudflare_Logo.png" alt="Cloudflare" width="40" height="40"/>
+  </a>
+  <a href="https://vercel.com/" target="_blank" rel="noreferrer">
+    <img src="../diagrams/vercel-logo.png" alt="Vercel" width="40" height="40"/>
+  </a>
+  <a href="https://www.nginx.com/" target="_blank" rel="noreferrer">
+    <img src="../diagrams/nginx-icon-223x256-ghqr4o29.png" alt="NGINX" width="40" height="40"/>
+  </a>
+  <a href="https://gemini.google.com/" target="_blank" rel="noreferrer">
+    <img src="../diagrams/Google_Gemini_logo.svg.png" alt="Gemini" width="40" height="40"/>
+  </a>
+</p>
+
+### Frontend Technologies
+
+-   **Web Frontend:** Next.js (React)
+-   **Mobile App:** React Native
+-   **Styling:** Tailwind CSS
+-   **UI Features:** Dark Mode, Skeleton Views
+
+### Backend Technologies
+
+-   **API Services:** Go, Spring Boot
+-   **Authentication:** Keycloak
+-   **User Service:** Spring Boot
+-   **Planning Service:** Spring Boot
+-   **Social Media Service:** Spring Boot
+-   **Notification Service:** Spring Boot (WebSocket + email alerts)
+
+### Database
+
+-   **Relational DB:** Supabase PostgreSQL
+-   **Media Storage:** Cloudflare Images
+
+### Cloud Infrastructure
+
+-   **Frontend Hosting:** Vercel (Serverless)
+-   **Backend Hosting:** Oracle Cloud VM + Docker Compose
+-   **Database Hosting:** Supabase (Serverless)
+-   **Image Delivery:** Cloudflare Images CDN
+
+### DevOps and CI/CD Tools
+
+-   **CI Pipeline:** GitHub Actions
+-   **Orchestration & Deployment:** Docker Compose
+-   **Containerization:** Docker
+-   **Reverse Proxy (local/fallback):** Certbot + NGINX
 
 ## Deployment
 
-The application is containerized using **Docker** and managed via **Docker Compose**.
-
-### **Docker Components**
-
-- **Frontend (React App)**
-- **Backend (Spring Boot Microservices)**
-- **PostgreSQL Databases**
-- **Redis Cache**
-- **Kafka & Zookeeper**
-- **Cloudflare S3 for image storage**
-
----
-
-## Contributors
-
-- **Customer Side:** Kavindu ([senaMora](https://github.com/senaMora))
-- **Restaurant Side:** Harshana ([UchihaIthachi](https://github.com/UchihaIthachi))
-- **Rider Side:** Sahan ([sahan-vishwajith](https://github.com/sahan-vishwajith))
+-   **Frontend:** Deployed on Vercel (Serverless).
+-   **Backend:** Microservices are containerized using Docker and orchestrated with Docker Compose on an Oracle Cloud VM.
+-   **Database:** Hosted on Supabase (Serverless).
+-   **Image CDN:** Cloudflare Images.
