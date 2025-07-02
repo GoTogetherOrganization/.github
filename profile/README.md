@@ -1,36 +1,12 @@
 # GoTogether - Intelligent Travel Companion for Sri Lanka
 
-## Table of Contents
+[![Backend Deploy](https://github.com/GoTogetherOrganization/GoTogether-backend/actions/workflows/deploy.yml/badge.svg)](https://github.com/GoTogetherOrganization/GoTogether-backend/actions/workflows/deploy.yml)
+[![Frontend Deploy (Vercel)](https://github.com/GoTogetherOrganization/GoTogether-web/actions/workflows/deploy-vercel.yml/badge.svg)](https://github.com/GoTogetherOrganization/GoTogether-web/actions/workflows/deploy-vercel.yml)
 
-- [Overview](#overview)
-  - [Problem Statement](#problem-statement)
-  - [Target Users](#target-users)
-- [Key Features](#key-features)
-- [High-Level Architecture](#high-level-architecture)
-  - [Key Components](#key-components)
-- [Web Frontend Design](#web-frontend-design)
-  - [Key Features](#key-features-1)
-- [Mobile Frontend Design](#mobile-frontend-design)
-  - [Highlights](#highlights)
-- [Backend Design](#backend-design)
-  - [Microservices](#microservices)
-  - [Storage](#storage)
-- [Database Design](#database-design)
-- [Security and Privacy Design](#security-and-privacy-design)
-  - [Authentication and Authorization](#authentication-and-authorization)
-  - [Secure Communication Channels](#secure-communication-channels)
-  - [Data Privacy and Protection](#data-privacy-and-protection)
-- [Technology Stack](#technology-stack)
-  - [Frontend Technologies](#frontend-technologies)
-  - [Backend Technologies](#backend-technologies)
-  - [Database](#database)
-  - [Cloud Infrastructure](#cloud-infrastructure)
-  - [DevOps and CI/CD Tools](#devops-and-cicd-tools)
-- [Deployment](#deployment)
 
 ## Overview
 
-GoTogether is a comprehensive travel management solution designed specifically for Sri Lanka, comprising both mobile and web applications. The platform addresses critical gaps in travel planning and transportation information that affect both international tourists and local travelers. By providing personalized route planning, real-time travel support, and cultural insights, GoTogether serves as an intelligent travel companion that transforms the way people explore Sri Lanka.
+GoTogether is a smart, AI-driven travel management platform tailored for both local and foreign travelers in Sri Lanka. Designed with modularity, scalability, and real-time intelligence at its core, it offers seamless web and mobile interfaces, dynamic itinerary generation, transportation data integration, and social features that collectively redefine how people explore the island.
 
 ### Problem Statement
 
@@ -54,31 +30,39 @@ The application delivers six core functionalities designed to address specific t
 
 ## High-Level Architecture
 
-The system adopts a distributed microservices architecture, ensuring scalability, modularity, and cloud-native capabilities. It cleanly separates concerns across frontend, backend, AI services, and third-party integrations, using a blend of managed platforms and infrastructure-as-a-service components.
+GoTogether adopts a multi-layered microservice architecture, optimized for cloud-native deployment and real-time responsiveness. It includes the following architectural domains:
 
 ![High-Level Architecture](../diagrams/High%20level%20architecture.png)
 
 ### Key Components
 
 -   **Frontend**
-    -   Web App: Built with Next.js, deployed on Vercel.
-    -   Mobile App: Developed using React Native.
+    -   Web App: Built with Next.js using both SSR and CSR rendering models. Token storage uses secure cookies, with route guards protecting user-only routes.
+    -   Mobile App: Built with React Native and Expo, ensuring shared logic, adaptive theming, and cross-platform delivery.
 -   **Backend**
     -   Composed of Dockerized microservices using Spring Boot and Go.
 -   **API Gateway**
     -   Kong Gateway handles all inbound traffic (routing, rate limiting, service discovery, delegated authentication).
--   **Authentication**
-    -   Keycloak manages user login, registration, sessions, and OAuth2/OpenID Connect flows.
+-   **Authentication & Authorization**
+    -   Keycloak handles user management, token issuance, and session control.
+    -   Uses pre-configured realm/clients auto-imported via startup scripts.
+    -   HTTPS enforced via NGINX + Certbot with DuckDNS domain for backend.
 -   **Database**
     -   Supabase PostgreSQL stores persistent data.
 -   **Image CDN**
     -   Cloudflare Images stores and serves user-uploaded media.
 -   **DevOps & CI/CD**
-    -   GitHub Actions automates the build, test, and containerization pipeline.
+    -  GitHub Actions with custom deploy.sh script:
+      -  Multi-stage Docker builds optimized via .dockerignore
+      -  Local JAR builds to improve speed
+      -  Auto-deploy to Oracle Cloud VM
+    -  Oracle Free Tier used for backend VM hosting (replaced EC2 due to resource limits).
+    -  Vercel used for frontend auto-deploy.
 -   **Communication**
     -   Internal services communicate via REST and gRPC.
 -   **Reverse Proxy**
-    -   NGINX serves as an optional HTTPS reverse proxy.
+    -   NGINX enforces HTTPS, redirects, and fallback proxying.
+    -   Certbot + DuckDNS ensures SSL with free domain.
 
 ## Web Frontend Design
 
@@ -106,11 +90,20 @@ The mobile experience is built using React Native, enabling cross-platform devel
 
 ### Microservices
 Deployed via containers in Docker Compose:
--   **api-service (Go):** Handles place search, mapping, geocoding. Talks to Google Maps API, trip planner, and Gemini calls.
--   **planning-service (Spring Boot):** Manages event/trip creation, editing, participation. Validates user preferences and generates travel plans.
--   **social-media-service (Spring Boot):** Handles post creation, comments, likes, and user feed rendering.
--   **auth-service (Keycloak):** Handles authentication, registration, and session/token management.
--   **user-service (Spring Boot):** Manages user profiles and follow/unfollow system.
+-   **api-service (Go + Gin):**
+  -  Interfaces with Google Maps API, geocoding, directions, and LLM query generation via Gemini.
+  -   Implements error recovery, rate limiting, and caching middleware.
+-   **planning-service (Spring Boot):**
+  -    Generates AI-personalized itineraries using user trip history and current context.
+  -    Supports collaborative editing, trip participation logic.
+-   **social-media-service (Spring Boot):**
+  -   Manages posts, comments, reactions, and user feed.
+  -   Offers paginated REST APIs.
+-   **auth-service (Keycloak):**
+  -    Handles authentication, registration, and session/token management.
+-   **user-service (Spring Boot):**
+  -    Manages profile data, follows/unfollows, and user metadata.
+  -    Secure integration with Keycloak for user identity sync.
 
 ### Storage
 
@@ -138,7 +131,15 @@ The application utilizes **Supabase PostgreSQL** for persistent data storage, ma
 
 ### Data Privacy and Protection
 
--   **Email Verification:** Users must confirm their email address during registration.
+-   **Email Verification:** Custom wait scripts ensure service boot sequence integrity (e.g., user-service waits for Keycloak).
+  
+## Key Architectural Strengths
+
+-   **Service Readiness:** All public endpoints are secured using TLS.
+-   **Incremental Deployments:** Devs can spin up only required services via CLI flags in deploy.sh.
+-   **API Resilience:** Graceful error handling, fallback logic for external APIs, offline-tolerant design.
+-   **Infrastructure as Codes:**  Environment consistency ensured across developers using Docker, GitHub Actions, and automated Keycloak realm imports.
+-   **Localization Ready:** Future-proofed for Sinhala, Tamil, and English UI and LLM translation.
 
 ## Technology Stack
 
